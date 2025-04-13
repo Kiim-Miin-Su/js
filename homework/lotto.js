@@ -5,4 +5,6 @@ while (lotto.size < 6) {
     lotto.add(random_number);
 }
 
-console.log(lotto);
+const sortedLotto = Array.from(lotto).sort((a, b) => a - b);
+
+console.log(sortedLotto);
