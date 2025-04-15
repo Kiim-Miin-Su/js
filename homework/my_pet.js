@@ -3,9 +3,9 @@ class Pet {
         this._age = 0;
         this._name = "Unknown";
         this._type = "Unknown";
-        this._energy = 100;
-        this._hunger = 100;
-        this._happiness = 100;
+        this._energy = 50;
+        this._hunger = 50;
+        this._happiness = 50;
     }
     get_info() {
         console.log(Object.keys(this));
@@ -192,6 +192,7 @@ function simulate(pets, days) {
         console.log(`Day ${i + 1}`);
 
         for (var j = 0; j < pets.length; j++) {
+            pets[j].age += 0.1;
             var random_each_number = Math.floor(Math.random() * behavior_pet.length);
             console.log(pets[j].name + " is " + behavior_pet[random_each_number].name);
             behavior_pet[random_each_number](pets[j]);
