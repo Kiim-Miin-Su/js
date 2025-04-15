@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>windows</title>
+</head>
+
+<body>
+    <script>
+        const hello = () => alert("Hello Javascript");
+
+        const st = setTimeout(hello, 4000);
+        clearTimeout(st);
+
+        // setInterval(); ~초 마다 반복
+
+        const si = setInterval(hello, 3000);
+        const clear_interval = () => {
+            clearInterval(si);
+            alert("Interval cleared");
+        }
+    </script>
+    <button onclick="clear_interval()">stop</button>
+</body>
+
+</html>

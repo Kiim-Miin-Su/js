@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>make a clock</title>
+</head>
+
+<body>
+    <button onclick="start_clock()">start</button>
+    <button onclick="stop_clock()">stop</button>
+    <script>
+        /*
+                const show_clock = (date) => {
+                    console.log(date);
+                }
+        
+                const si = setInterval(() => {
+                    const now = new Date();
+                    show_clock(now);
+                }, 1000);
+        
+                const start_clock = () => {
+                    si;
+                }
+                const stop_clock = () => {
+                    clearInterval(si);
+                }
+          */
+
+        function make_clock() {
+            const now = new Date();
+            let yy = date.getFullYear();
+            let mm = date.getMonth() + 1;
+            let dd = date.getDate();
+            let hh = date.getHours();
+            let mi = date.getMinutes();
+            let ss = date.getSeconds();
+
+            console.log(`${yy}-${mm}-${dd} ${hh}:${mi}:${ss}`);
+        }
+
+        let si;
+
+        const start_clock = () => {
+            si = setInterval(make_clock, 1000);
+        }
+
+        const stop_clock = () => {
+            clearInterval(si);
+        }
+    </script>
+</body>
+
+</html>

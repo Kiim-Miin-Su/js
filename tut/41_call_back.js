@@ -61,11 +61,9 @@ const is_palindrome = (str) => {
     } else if (str[0] !== str[str.length - 1]) {
         return false;
     } else {
-        return is_palindrome(str.slice(1, str.length - 1));
+        return is_palindrome(str.substring(1, str.length - 1));
     }
 }
 
 console.log(is_palindrome("racecar"));
 console.log(is_palindrome("hello"));
-console.log(is_palindrome("level"));
-console.log(is_palindrome('a'));
