@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>node</title>
+</head>
+
+<body>
+    <div id="box"></div>
+
+    <ul id="list">
+        <li id="item_1">first_item</li>
+        <li id="item_2">second_item</li>
+    </ul>
+
+    <div id="wrapper">
+        <p id="old_p">old_text</p>
+    </div>
+</body>
+
+<script>
+    const div = document.getElementById('box');
+    const p = document.createElement('p');
+    p.innerText = "new text";
+    div.appendChild(p);
+
+    const ul = document.getElementById('list');
+    const li = document.getElementById('item_1');
+    ul.removeChild(li);
+
+    const wrapper = document.getElementById('wrapper');
+    const old_p = document.getElementById('old_p');
+    const new_p = document.createElement('p');
+    new_p.innerText = "new text";
+    wrapper.replaceChild(new_p, old_p);
+
+    const new_item = document.createElement('li');
+    new_item.innerText = "new_item";
+    const existing_item = ul.firstElementChild;
+    ul.insertBefore(new_item, existing_item);
+
+    const original = document.getElementById("wrapper");
+    const clone = original.cloneNode(true); // false for shallow copy, true for deep copy
+    document.body.appendChild(clone);
+</script>
+
+</html>

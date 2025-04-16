@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>navigator_instances</title>
+</head>
+
+<body>
+    <h2>navigator_instances</h2>
+
+    <button onclick="show_navInfo()">show_navInfo</button>
+</body>
+
+<script>
+    show_navInfo = () => {
+        console.log("browser name: " + navigator.userAgent);
+        console.log("platform : " + navigator.platform);
+        console.log("language: " + navigator.language);
+        console.log("is_online: " + navigator.onLine);
+        console.log("cookie_enabled: " + navigator.cookieEnabled);
+    }
+</script>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dom</title>
+</head>
+
+<body>
+    <p id="greeting">hello</p>
+
+    <p class="item">item_1</p>
+    <p class="item">item_2</p>
+    <p class="item">item_3</p>
+
+    <P class="desc">first</P>
+    <P class="desc">second</P>
+    <P class="desc">third</P>
+
+    <ul id="list">
+        <li>list</li>
+        <li>list</li>
+        <li>list</li>
+    </ul>
+
+    <img src="../images/puppy.png" alt="puppy" id="image_1">
+
+    <button onclick="change_text()">change_text</button>
+    <button onclick="highlight_items()">emphasis</button>
+    <button onclick="update_first()">change only first</button>
+    <button onclick="add_item()">create item</button>
+    <button onclick="change_image()">change_image</button>
+    <button onclick="remove_text()">remove_greeting</button>
+</body>
+
+<script>
+    change_text = () => {
+        document.getElementById("greeting").innerText = "hello world";
+    }// end of change_text();
+    highlight_items = () => {
+        const items = document.getElementsByClassName("item");
+        for (var item of items) {
+            item.style.color = "red";
+            item.style.fontSize = "20px";
+        }
+    }// end of highlight_items();
+    update_first = () => {
+        const descs = document.querySelector(".desc")
+        descs.style.color = "blue";
+        descs.style.fontSize = "20px";
+    } // end of update_first();
+    add_item = () => {
+        const new_item = document.createElement("li");
+        new_item.innerHTML = "<a href='#'>new item</a>";
+        document.getElementById("list").appendChild(new_item);
+    }
+    change_image = () => {
+        document.getElementById("image_1").setAttribute("src", "../images/kitty.png").setAttribute("alt", "kitty");
+    }
+    remove_text = () => {
+        document.getElementById("greeting").remove();
+    }
+</script>
+
+</html>

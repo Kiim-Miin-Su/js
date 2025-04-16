@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reg_Exp</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    const regex = /apple/;
+
+    console.log(regex.test("I have an apple pie")); // true
+    console.log(regex.test("I have an blueberry pie")); // false
+
+    const text = "my phone number is 123-456-7890";
+    const result = text.match(/\d{3}-\d{3}-\d{4}/); // 
+    window.alert(result); // 
+
+    const word = "my name is minsu";
+    const clean = word.replace(/minsu/, "****");
+</script>
+
+</html>

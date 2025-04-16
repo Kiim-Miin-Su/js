@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>location</title>
+</head>
+
+<body>
+    <h2>location</h2>
+    <button onclick="show_location()">
+        show_location
+    </button>
+    <button onclick="go_to_naver()">
+        go_to_naver
+    </button>
+    <button onclick="reload_page()">
+        reload_page
+    </button>
+
+    <script>
+        show_location = () => {
+            console.log("URL: ", window.location.href);
+            console.log("protocol: ", window.location.protocol);
+            console.log("host: ", window.location.host);
+            console.log("hostname: ", window.location.hostname);
+            console.log("port: ", window.location.port);
+            console.log("pathname: ", window.location.pathname);
+            console.log("query: ", window.location.search);
+            console.log("hash: ", window.location.hash);
+        }
+
+        go_to_naver = () => {
+            location.href = "https://www.naver.com";
+        }
+        reload_page = () => {
+            location.reload();
+        }
+    </script>
+
+</body>
+
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>history</title>
+</head>
+
+<body>
+    <h2>history instances</h2>
+
+    <button onclick="go_back()">go_back</button>
+    <button onclick="go_forward()">go_forward</button>
+    <button onclick="go_steps(-2)">go_steps</button>
+    <button onclick="show_history()">show_history</button>
+</body>
+
+<script>
+    go_back = () => {
+        history.back();
+    }
+
+    go_forward = () => {
+        history.forward();
+    }
+
+    go_steps = (steps) => {
+        history.go(steps);
+    }
+
+    show_history = () => {
+        if (history.length > 0) {
+            alert("history: ", history);
+        } else {
+            throw new Error("history is empty");
+        }
+    }
+</script>
+
+</html>

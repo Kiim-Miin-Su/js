@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event_instance</title>
+    <style>
+        #click_area {
+            width: 200px;
+            height: 200px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="./regist" method="post">
+        <h2>check event_instance</h2>
+        <div id="click_area">click_area</div>
+        <input type="text" id="input_box" placeholder="click keyboard" />
+    </form>
+
+
+</body>
+
+<script>
+    document.getElementById("click_area").addEventListener("click", (event) => {
+        alert
+            (
+                `x: ${event.clientX}, y: ${event.clientY} \n` +
+                `type: ${event.type} \n` +
+                `target_id: ${event.target.id} \n`
+            );
+    })
+    document.getElementById("input_box").addEventListener("keydown", (event) => {
+        console.log
+            (
+                `input: ${event.key} \n` +
+                `keyCode: ${event.keyCode} \n` +
+                `target: ${event.target} \n`
+            )
+    })
+    document.getElementById("input_box").addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            alert("enter key is blocked");
+        }
+    })
+</script>
+
+</html>

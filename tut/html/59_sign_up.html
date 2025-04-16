@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign_up</title>
+</head>
+
+<body>
+    <h1>sign_up</h1>
+    <form action="./regist" name="regist" method="post" class="regist" onsubmit="return send_it()">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <br><br>
+
+        <label for="password_re">check Password:</label>
+        <input type="password" id="password_re" name="password_re">
+        <br><br>
+
+        <label for="name">name:</label>
+        <input type="text" id="name" name="name" maxlength="10">
+        <br><br>
+
+        <label for="phone">phone:</label>
+        <input type="text" id="phone" name="phone">
+        <br><br>
+
+        <label for="email">email:</label>
+        <input type="email" id="email" name="email">
+        <br><br>
+
+        <label for="male">male</label><input type="radio" id="male" value="male" checked>
+        <label for="female">female</label><input type="radio" id="female" value="female" checked>
+        <br><br>
+
+        <p>주민등록번호:
+            <input type="text" name="ssn1" id="ssn1" maxlength="6" class="ssn">
+            -
+            <input type="text" name="ssn2" id="ssn2" maxlength="7" class="ssn">
+            <button>주민등록번호 검증</button>
+        </p>
+
+        <p>우편번호:
+            <input type="text" name="zipcode" id="zip_code" class="zip_code" maxlength="5">
+            <button>우편번호 찾기</button>
+        </p>
+
+        <p>address: <input type="text" name="address1" id="address1"></p>
+        <p>상세주소: <input type="text" name="address2" id="address2"></p>
+        <p>참고항목: <input type="text" name="address3" id="address3"></p>
+
+        <button type="submit" id="submit">submit</button>
+    </form>
+</body>
+<script src="../javascript/regist.js"></script>
+
+</html>
