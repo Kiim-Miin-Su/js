@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>local_storage</title>
+</head>
+
+<body>
+    <input type="text" name="input_name" id="input_name" placeholder="Enter your name">
+    <button onclick="save_name()">save</button>
+    <p id="welcome"></p>
+    <hr>
+
+    <button onclick="save_user()">save_user</button>
+    <button onclick="load_user()">load_user</button>
+    <div id="info"></div>
+</body>
+
+<script>
+    function save_name() {
+        const name = document.getElementById("input_name").value;
+        localStorage.setItem("user_name", name);
+        document.getElementById("welcome").innerText = `Hello ${name}`;
+    } // end of save_name();
+    function save_user() {
+        const user = {
+            name: "minsu",
+            age: 26,
+            job: "developer",
+        }
+        localStorage.setItem("user", JSON.stringify(user));
+    }
+    function load_user() {
+        const data = localStorage.getItem("user");
+        if (data) {
+            const user = JSON.parse(data);
+            const container = document.getElementById("info");
+            container.innerHTML =
+                `
+                <p>이름: ${user.name}</p>
+                <p>나이: ${user.age}</p>
+                <p>직업: ${user.job}</p>
+                `
+        } else {
+            alert("No data found");
+            const container = document.getElementById("info");
+            container.innerHTML = "";
+        }
+    } // end of load_user();
+</script>
+
+</html>

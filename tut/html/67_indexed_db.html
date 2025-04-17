@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>indexed_db</title>
+</head>
+
+<body>
+    <h1>🙈my note</h1>
+    <input type="text" name="input_note" id="input_note" placeholder="Enter your note here">
+    <button type="button" onclick="save_note()" id="save_note">Save Note</button>
+
+    <ul id="note_list"></ul>
+</body>
+
+<script>
+    var db;
+
+    const request = indexedDB.open("my_notes_db", 1);
+
+    request.onupgradeneeded = (event) => {
+        db = event.target.result;
+        if (!db.objectStoreNames.contains("notes")) {
+            db.createObjectStore("notes", { keypath: "id", autoIncrement: true });
+        }
+    }
+    request.onsuccess = (event) => {
+        db = event.target.result;
+        display_notes();
+    }
+    request.onerror = (event) => {
+        alert("Error opening database: " + event.target.errorCode);
+    }
+    display_notes = () => {
+        const list = document.getElementById("note_list");
+        list.innerHTML = "";
+
+        const tx = db.transaction("notes", "readonly");
+        const store = tx.objectStore("notes");
+        const request = store.openCursor();
+
+        request.onsuccess = (event) => {
+            const cursor = event.target.result;
+            if (cursor) {
+                const li = document.createElement("li");
+                li.textContent = `[${cursor.value.created.toLocaleString()}: ${cursor.value.note}] ${cursor.value.text}`;
+                list.appendChild(li);
+                cursor.continue();
+            }
+        }
+    }
+    function save_note() {
+        const input = document.getElementById("input_note");
+        const text = input.value.trim();
+        if (!text) {
+            alert("Please enter a note.");
+            return;
+        } else {
+            const tx = db.transaction("notes", "readwrite");
+            const store = tx.objectStore("notes");
+            store.add({ text: text, created: new Date() });
+
+            tx.oncomplete = () => {
+                input.value = "";
+                display_notes();
+            }
+        }
+    }
+</script>
+
+</html>

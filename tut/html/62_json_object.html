@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>json_object</title>
+</head>
+
+<body>
+    <input type="text" name="user_id" id="user_id" placeholder="아이디">
+    <input type="password" name="user_pw" id="user_pw" placeholder="비밀번호">
+    <button type="button" onclick="save_user()">save</button>
+    <hr>
+
+    <table border="1" id="user_table">
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>age</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
+
+<script>
+    save_user = () => {
+        const user_id = document.getElementById("user_id").value;
+        const user_pw = document.getElementById("user_pw").value;
+
+        const user = {
+            id: user_id,
+            pw: user_pw,
+        }
+        console.log("JSON: ", JSON.stringify(user));
+    }// end of save_user();
+
+    const users =
+        [
+            { name: "minsu", age: 26 },
+            { name: "jiyoung", age: 25 },
+            { name: "sumin", age: 24 },
+        ];
+
+    const tbody = document.querySelector("#user_table tbody");
+    users.forEach((user) => {
+        const row = `<tr><td>${user.name}</td><td>${user.age}</td></tr>`;
+        tbody.innerHTML += row;
+    });
+</script>
+
+</html>

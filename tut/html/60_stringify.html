@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+</head>
+
+<body>
+    <div id="info"></div>
+</body>
+<script>
+    const user = {
+        name: "minsu",
+        age: 26,
+        job: "developer",
+    }
+    const str = '{"name":"minsu","age":26}';
+
+    const jsonstr = JSON.stringify(user);
+    console.log(jsonstr);
+
+    console.log(str);
+
+    const user_obj = JSON.parse(jsonstr);
+    console.log(user_obj);
+
+    const container = document.getElementById("info");
+    container.innerHTML =
+        `
+        <p>이름: ${user_obg.name}</p>
+        <p>이름: ${user_obg.name}</p>
+        <p>이름: ${user_obg.name}</p>
+        `
+
+</script>
+
+
+</html>

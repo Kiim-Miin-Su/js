@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my_todo_list</title>
+</head>
+
+<body>
+    <div class="container">
+        <input type="text" name="input_text" id="input_text" placeholder="Enter your todo">
+        <button onclick="add_todo()">Add Todo</button>
+        <button onclick="clear_todo()">Clear Todo</button>
+
+        <ul id="todo_list"></ul>
+    </div>
+</body>
+<script>
+    function add_todo() {
+        const todo = document.getElementById("input_text").value;
+        if (todo) {
+            const todo_list = JSON.parse(localStorage.getItem("todo_list")) || [];
+            todo_list.push(todo);
+            localStorage.setItem("todo_list", JSON.stringify(todo_list));
+            display_todo();
+        } else {
+            alert("Please enter a todo item.");
+        }
+    }
+    function display_todo() {
+        const todo_list = JSON.parse(localStorage.getItem("todo_list")) || [];
+        const list = document.getElementById("todo_list");
+        list.innerHTML = "";
+        todo_list.forEach((todo, index) => {
+            const li = document.createElement("li");
+            li.innerText = todo;
+            const delete_button = document.createElement("button");
+            const change_button = document.createElement("button");
+            delete_button.innerText = "Delete";
+            change_button.innerText = "change";
+
+            delete_button.onclick = function () {
+                delete_todo(index);
+            };
+            change_button.onclick = function () {
+                const new_todo = prompt("Enter new todo", todo);
+                if (new_todo) {
+                    const todo_list = JSON.parse(localStorage.getItem("todo_list")) || [];
+                    todo_list[index] = new_todo;
+                    localStorage.setItem("todo_list", JSON.stringify(todo_list));
+                    display_todo();
+                }
+            };
+            li.appendChild(change_button);
+            li.appendChild(delete_button);
+            list.appendChild(li);
+        });
+    }
+    function delete_todo(index) {
+        const todo_list = JSON.parse(localStorage.getItem("todo_list")) || [];
+        todo_list.splice(index, 1);
+        localStorage.setItem("todo_list", JSON.stringify(todo_list));
+        display_todo();
+    }
+</script>
+
+</html>
