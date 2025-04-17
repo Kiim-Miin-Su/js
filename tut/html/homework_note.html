@@ -20,9 +20,9 @@
     function add_todo() {
         const todo = document.getElementById("input_text").value;
         if (todo) {
-            const todo_list = JSON.parse(localStorage.getItem("todo_list")) || [];
+            const todo_list = JSON.parse(localStorage.getItem("todo_list")) || []; // JSON의 형태로 저장된 todo_list를 가져온다.(없으면 빈 배열로 초기화)
             todo_list.push(todo);
-            localStorage.setItem("todo_list", JSON.stringify(todo_list));
+            localStorage.setItem("todo_list", JSON.stringify(todo_list)); // JSON에 저장하기 위해 문자열로 변환
             display_todo();
         } else {
             alert("Please enter a todo item.");
@@ -46,7 +46,6 @@
             change_button.onclick = function () {
                 const new_todo = prompt("Enter new todo", todo);
                 if (new_todo) {
-                    const todo_list = JSON.parse(localStorage.getItem("todo_list")) || [];
                     todo_list[index] = new_todo;
                     localStorage.setItem("todo_list", JSON.stringify(todo_list));
                     display_todo();
