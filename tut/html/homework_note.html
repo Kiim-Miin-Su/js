@@ -83,6 +83,10 @@
         localStorage.setItem("todo_list", JSON.stringify(todo_list));
         display_todo();
     }
+    function clear_todo() {
+        localStorage.removeItem("todo_list");
+        display_todo();
+    }
 </script>
 
 </html>
