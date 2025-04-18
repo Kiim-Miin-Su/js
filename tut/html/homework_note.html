@@ -24,6 +24,9 @@
             border-radius: 5px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ccc;
+            background-color: #fff;
         }
     </style>
 </head>
@@ -34,58 +37,60 @@
         <button onclick="add_todo()">Add Todo</button>
         <button onclick="clear_todo()">Clear Todo</button>
 
-        <ul id="todo_list"></ul>
+        <ol id="todo_list"></ol>
     </div>
 </body>
+
 <script>
-    display_todo(); // 페이지 로드 시 todo_list를 보여준다.
-    function add_todo() {
-        const todo = document.getElementById("input_text").value;
-        if (todo) {
-            const todo_list = JSON.parse(localStorage.getItem("todo_list")) || []; // JSON의 형태로 저장된 todo_list를 가져온다.(없으면 빈 배열로 초기화)
-            todo_list.push(todo);
-            localStorage.setItem("todo_list", JSON.stringify(todo_list)); // JSON에 저장하기 위해 문자열로 변환
-            display_todo();
-        } else {
-            alert("Please enter a todo item.");
-        }
-    }
     function display_todo() {
         const todo_list = JSON.parse(localStorage.getItem("todo_list")) || [];
         const list = document.getElementById("todo_list");
-        list.innerHTML = "";
-        todo_list.forEach((todo, index) => {
+
+        for (var todo of todo_list) {
             const li = document.createElement("li");
             li.innerText = todo;
-            const delete_button = document.createElement("button");
-            const change_button = document.createElement("button");
-            delete_button.innerText = "Delete";
-            change_button.innerText = "change";
-
-            delete_button.onclick = function () {
-                delete_todo(index);
-            };
-            change_button.onclick = function () {
-                const new_todo = prompt("Enter new todo", todo);
-                if (new_todo) {
-                    todo_list[index] = new_todo;
-                    localStorage.setItem("todo_list", JSON.stringify(todo_list));
-                    display_todo();
-                }
-            };
-            li.appendChild(change_button);
-            li.appendChild(delete_button);
             list.appendChild(li);
-        });
+
+            const button_delete = document.createElement("button");
+            const button_change = document.createElement("button");
+            button_delete.innerText = "Delete";
+            button_change.innerText = "Change";
+
+            button_delete.onclick = function () {
+                delete_todo(todo);
+            }
+            button_change.onclick = function () {
+                change_todo(todo);
+            }
+            li.appendChild(button_delete);
+            li.appendChild(button_change);
+        }
     }
-    function delete_todo(index) {
-        const todo_list = JSON.parse(localStorage.getItem("todo_list")) || [];
-        todo_list.splice(index, 1);
-        localStorage.setItem("todo_list", JSON.stringify(todo_list));
+    function add_todo() {
+        const input_text = document.getElementById("input_text").value;
+        const todo_list = JSON.parse(localStorage.getItem("todo_list")) || []; // JSON 파일에서 "todo_list"키의 밸류를 반환 [];
+        todo_list.push(input_text);
+        localStorage.setItem("todo_list", JSON.stringify(todo_list)); // JSON으로 저장하기 위해 String으로 변환;
         display_todo();
     }
     function clear_todo() {
-        localStorage.removeItem("todo_list");
+        localStorage.setItem("todo_list", null)
+    }
+    function change_todo(todo) {
+        const todo_list = JSON.parse(localStorage.getItem("todo_list"));
+        const index = todo_list.indexOf(todo);
+        const new_todo = prompt("Enter new todo", todo);
+        if (new_todo) {
+            todo_list[index] = new_todo;
+            localStorage.setItem("todo_list", JSON.stringify(todo_list));
+            display_todo();
+        }
+    }
+    function delete_todo() {
+        const todo_list = JSON.parse(localStorage.getItem("todo_list"));
+        const index = todo_list.indexOf(todo);
+        todo_list.splice(index, 1);
+        localStorage.setItem("todo_list", JSON.stringify(todo_list));
         display_todo();
     }
 </script>
