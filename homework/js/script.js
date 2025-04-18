@@ -5,12 +5,12 @@ const soul_reapers = ["이치고", "루키아", "켄파치", "히츠가야", "�
 
 const getRandomReaper = () => {
     return soul_reapers[Math.floor(Math.random() * soul_reapers.length)];
-}
+};
 
 const playSound = () => {
     const audio = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_f7a3bb020e.mp3?filename=big-impact-7057.mp3");
     audio.play();
-}
+};
 
 const load_data = () => {
     const url = `https://apis.data.go.kr/6260000/BusanITSINC/INCList?serviceKey=${service_key}&pageNo=1&numOfRows=10&resultType=json`;
@@ -26,14 +26,21 @@ const load_data = () => {
             }
 
             const items = content?.items;
+            const resultDiv = document.getElementById("result");
+
             if (!items || items.length === 0) {
-                alert("아직 호로가 출현하지 않았군...");
+                resultDiv.innerHTML = `
+                    <h3>✅ 부산은 현재 평화롭습니다 ☀️</h3>
+                    <p>출현한 호로가 없습니다. 안심하세요!</p>
+                `;
+                const defaultCenter = new kakao.maps.LatLng(35.1796, 129.0756);
+                map.setCenter(defaultCenter);
                 return;
             }
 
-            playSound(); // 💥 효과음
+            playSound();
 
-            // 지도 마커 초기화
+            // 기존 마커 제거
             markers.forEach(marker => marker.setMap(null));
             markers = [];
 
@@ -51,7 +58,7 @@ const load_data = () => {
                     🏢 기관: ${item.instNm}<br>
                     📍 위도/경도: ${lat}, ${lon}<br>
                     🗡️ 출격 사신: <span class="saint">${reaper}</span><br>
-                    <img src="./homework/images/${reaper}.jpg" alt="${reaper}" width="250" id="reapers"><br>
+                    <img src="./homework/images/${reaper}.jpg" alt="${reaper}" class="reaper-image"><br>
                     <hr>
                 `;
 
@@ -63,27 +70,27 @@ const load_data = () => {
                         title: `${index + 1}번 호로 (${reaper})`
                     });
                     markers.push(marker);
+
                     if (index === 0) {
                         map.setCenter(position);
                     }
                 }
             });
 
-            document.getElementById("result").innerHTML = html;
+            resultDiv.innerHTML = html;
+        })
+        .catch(err => {
+            console.error("🚨 API 호출 실패:", err);
+            alert("공공데이터 API 호출에 실패했습니다.");
         });
 };
 
 window.onload = function () {
     kakao.maps.load(() => {
-        const center = new kakao.maps.LatLng(35.1796, 129.0756);
+        const center = new kakao.maps.LatLng(35.1796, 129.0756); // 부산 중심
         map = new kakao.maps.Map(document.getElementById("map"), {
             center: center,
             level: 6
         });
     });
 };
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('#reapers').forEach((img) => {
-        img.classList.add('glare');
-    });
-});
