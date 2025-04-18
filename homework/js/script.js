@@ -7,11 +7,6 @@ const getRandomReaper = () => {
     return soul_reapers[Math.floor(Math.random() * soul_reapers.length)];
 };
 
-const playSound = () => {
-    const audio = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_f7a3bb020e.mp3?filename=big-impact-7057.mp3");
-    audio.play();
-};
-
 const load_data = () => {
     const url = `https://apis.data.go.kr/6260000/BusanITSINC/INCList?serviceKey=${service_key}&pageNo=1&numOfRows=10&resultType=json`;
 
@@ -37,8 +32,6 @@ const load_data = () => {
                 map.setCenter(defaultCenter);
                 return;
             }
-
-            playSound();
 
             // 기존 마커 제거
             markers.forEach(marker => marker.setMap(null));
