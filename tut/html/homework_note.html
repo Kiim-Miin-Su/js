@@ -75,6 +75,7 @@
     }
     function clear_todo() {
         localStorage.setItem("todo_list", null)
+        display_todo();
     }
     function change_todo(todo) {
         const todo_list = JSON.parse(localStorage.getItem("todo_list"));

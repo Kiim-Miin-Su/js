@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>async</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    const menus = ['Espresso', 'Latte', 'Cappuccino'];
+    function order_coffee(menu) {
+        return new Promise((resolve, reject) => {
+            console.log(`Ordering ${menu} coffee...`);
+            setTimeout(() => {
+                if (menus.includes(menu)) {
+                    resolve(`Your ${menu} coffee is ready!`);
+                } else {
+                    reject(new Error(`Sorry, we don't have ${menu} coffee.`));
+                }
+            }, 2000) // end of setTimeout();
+        })// end of Promise();
+
+    }// end of order_coffee();
+
+    const start_order = async () => {
+        try {
+            const result = await order_coffee(prompt('What coffee would you like?'));
+            console.log(result);
+            console.log('Enjoy your coffee!');
+        } catch (error) {
+            console.error(error);
+        } finally {
+            console.log('Thank you for your order!');
+        }
+    }// end of start_order();
+
+    start_order();
+
+    // 한마디로 Promise를 async/await로 구성하여 비동기 처리를 하기 위함
+    // 근데 어쩔 때 비동기를 써야하는데? 실무적인 예시가 있을까요?
+</script>
+
+</html>

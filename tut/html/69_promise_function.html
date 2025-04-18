@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promise function</title>
+</head>
+
+<body>
+    <script>
+        function get_banana() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve("banana 🍌");
+                }, 2000);
+            })
+        }
+
+        function get_apple() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve("apple 🍏");
+                }, 1000);
+            })
+        }
+
+        function get_orange() {
+            return Promise.reject(new Error("orange is not available"));
+        }
+        get_banana().then((banana) => get_apple().then((apple) => [banana, apple])).then(console.log);
+
+        Promise.all([get_banana(), get_apple()]).then((fruits) => {
+            console.log(fruits);
+        }).catch((error) => {
+            console.error("Error:", error);
+        });
+
+        // Promise.race: 주어진 프로미스 중 가장 먼저 완료된 프로미스를 반환
+        Promise.race([get_banana(), get_apple()]).then((fruit) => {
+            console.log("First fruit:", fruit);
+        }).catch((error) => {
+            console.error("Error:", error);
+        });
+
+        // Promise.allSettled: 모든 프로미스가 완료될 때까지 기다리고, 각 프로미스의 결과를 배열로 반환
+
+        Promise.allSettled([get_banana(), get_apple(), get_orange()]).then((result) => {
+            console.log("All results:", result);
+
+        }).catch((error) => {
+            console.error("Error:", error);
+        });
+    </script>
+</body>
+
+</html>

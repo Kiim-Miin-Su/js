@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exception_controll</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    /*
+        const divide = (a, b) => {
+            try {
+                console.log(a / b);
+                if (a === 0 || b === 0)
+                    throw new Error("Division by zero is not allowed");
+            }
+            catch (e) {
+                console.log("Error: " + e.message);
+            }
+            finally {
+                console.log("Finally block executed");
+            }
+        }
+    */
+
+    get_age = (age) => {
+        try {
+            if (!age) {
+                throw new Error("Age is not provided");
+            } else if (age < 0) {
+                throw new Error("Age cannot be negative");
+            } else if (isNaN(age)) {
+                throw new Error("Age is not a number");
+            }
+            console.log("Your age is: " + age);
+        } catch (e) {
+            console.log("Error: " + e.message);
+        } finally {
+            console.log("Finally block executed");
+        }
+    }
+
+</script>
+
+</html>

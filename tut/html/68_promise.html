@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promise</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /*
+    console.log("sending request...");
+    const get_data = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const success = true;
+            if (success) {
+                resolve("data received");
+            } else {
+                reject("error");
+            }
+        }, 2000); // end of setTimeout();
+    })// end of new_promise();
+    get_data
+        .then((result) => {
+            console.log(result);
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+        .finally(() => {
+            console.log("request completed");
+        })
+    */
+
+    function order_coffee(menu) {
+        console.log(`${menu} ordered`);
+        const available = ["coffee", "tea", "milk"];
+
+        return new Promise((resolve, reject) => { //resolve는 성공했을 때, reject는 실패했을 때
+            console.log(`Ordering ${menu} coffee...`);
+            setTimeout(() => {
+                if (available.includes(menu)) {
+                    resolve(`${menu} is ready`); // 성공했을 때 파라미터로 문자열 넣어줌
+                } else {
+                    reject(`sorry, ${menu} is not available`); // 실패했을 때 파라미터로 문자열 넣어줌
+                }
+            }, 2000); // end of setTimeout();
+
+        }) // end of new_promise();
+
+    } // end of order_coffee();
+
+    order_coffee(prompt("enter your order"))
+        .then((result) => {
+            console.log(result);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+        .finally(() => {
+            console.log("order completed");
+        })
+
+    const coffee = () => {
+        setTimeout(() => {
+            const menu = prompt("enter your order");
+            const available = ["coffee", "tea", "milk"];
+            console.log(`${menu} ordered`);
+
+            if (available.includes(menu)) {
+                console.log(`${menu} is ready`);
+            } else {
+                console.log(`sorry, ${menu} is not available`);
+            }
+        }, 2000); // end of setTimeout();
+
+        console.log("order completed");
+
+    }// end of coffee();
+
+    // 위의 2코드와 맨 밑의 펑션의 차이는?
+</script>
+
+</html>
