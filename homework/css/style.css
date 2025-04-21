@@ -85,15 +85,19 @@
         .saint {
             font-weight: bold;
             color: #f13a3a;
-            animation: boom 0.3s ease-in-out alternate 3;
+            animation: boom 0.7s ease-in-out alternate 3;
         }
 
         @keyframes boom {
             0% {
-                transform: scale(1);
+                transform: scale(0.9);
+            }
+
+            50% {
+                transform: scale(1.4);
             }
 
             100% {
-                transform: scale(1.2);
+                transform: scale(1);
             }
         }
